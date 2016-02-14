@@ -495,6 +495,7 @@
 				92E51EC81C5B20EC00C42C4E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		92E51EC91C5B20EC00C42C4E /* Build configuration list for PBXNativeTarget "ScoreKeeperTests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +504,7 @@
 				92E51ECB1C5B20EC00C42C4E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		92E51ECC1C5B20EC00C42C4E /* Build configuration list for PBXNativeTarget "ScoreKeeperUITests" */ = {
 			isa = XCConfigurationList;
@@ -511,6 +513,7 @@
 				92E51ECE1C5B20EC00C42C4E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

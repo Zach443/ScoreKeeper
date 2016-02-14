@@ -12,12 +12,31 @@ class ViewController: UIViewController {
 
     @IBOutlet var homeScoreLabel: UILabel!
     @IBOutlet var awayScoreLabel: UILabel!
-    var homeScore = 0
-    var awayScore = 0
+    
+    @IBOutlet weak var homeStepper: UIStepper!
+    @IBOutlet weak var awayStepper: UIStepper!
+    
+    var approxHomeScore: Double = 0.0
+    var approxAwayScore: Double = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        //Handle our steppers
+        homeStepper.wraps = true
+        awayStepper.wraps = true
+        homeStepper.autorepeat = true
+        awayStepper.autorepeat = true
+        
+        homeStepper.minimumValue = 0
+        awayStepper.minimumValue = 0
+        homeStepper.maximumValue = 100
+        awayStepper.maximumValue = 100
+        
+        homeStepper.stepValue = 1
+        awayStepper.stepValue = 1
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -25,31 +44,46 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func addAwayScore() {
-        
-        //Update Scores
-        awayScore++
-        NSLog("Away Point! \(awayScore)")
-        if(awayScore >= 25) {
-            awayScore = 0
+    //Stepper gets pushed
+    @IBAction func stepperAction(sender: UIStepper) {
+        switch sender {
+        case homeStepper: updateScore(1, score: homeStepper.value)
+            NSLog("homeStepper pressed!")
+            break
+        case awayStepper: updateScore(2, score: awayStepper.value)
+            NSLog("awayStepper pressed!")
+            break
+        default: updateScore(3, score: 0)
+            break
         }
-        awayScoreLabel.text = "Away: \(awayScore)"
-        
-    }
-    
-    @IBAction func addHomeScore() {
-        NSLog("Home Point!")
-        
-        //Update Scores
-        homeScore++
-        NSLog("Home Score \(homeScore)")
-        homeScoreLabel.text = "Home: \(homeScore)"
-        
     }
     
     
-
-
-
+    //Update the score variables and labels
+    func updateScore(team: Int, score: Double) {
+        if (team == 1) {
+            //Add point to the home team
+            approxHomeScore = homeStepper.value
+            
+            //Lets make the score a nice pretty int
+            var homeScore = Int(approxHomeScore)
+            homeScoreLabel.text = "Home: \(homeScore)"
+            
+            NSLog("Home Point! \(homeScore)")
+        } else if (team == 2) {
+            //Add point to away team (booo!)
+            approxAwayScore = homeStepper.value
+            
+            //Make the score pretty, yayyy integers!
+            var awayScore = Int(approxAwayScore)
+            awayScoreLabel.text = "Away: \(awayScore)"
+            
+            NSLog("Away Point! \(awayScore)")
+        } else {
+            //This should never happen
+            NSLog("BAD SCORE UPDATE. SOMETHING IS BROKEN")
+        }
+    }
+    
 }
 
