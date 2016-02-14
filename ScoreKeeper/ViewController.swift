@@ -23,8 +23,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         //Handle our steppers
-        homeStepper.wraps = true
-        awayStepper.wraps = true
+        //homeStepper.wraps = true
+        //awayStepper.wraps = true
+        
         homeStepper.autorepeat = true
         awayStepper.autorepeat = true
         
@@ -47,20 +48,20 @@ class ViewController: UIViewController {
     //Stepper gets pushed
     @IBAction func stepperAction(sender: UIStepper) {
         switch sender {
-        case homeStepper: updateScore(1, score: homeStepper.value)
+        case homeStepper: updateScore(1)
             NSLog("homeStepper pressed!")
             break
-        case awayStepper: updateScore(2, score: awayStepper.value)
+        case awayStepper: updateScore(2,)
             NSLog("awayStepper pressed!")
             break
-        default: updateScore(3, score: 0)
+        default: updateScore(3)
             break
         }
     }
     
     
     //Update the score variables and labels
-    func updateScore(team: Int, score: Double) {
+    func updateScore(team: Int) {
         if (team == 1) {
             //Add point to the home team
             approxHomeScore = homeStepper.value
@@ -72,7 +73,7 @@ class ViewController: UIViewController {
             NSLog("Home Point! \(homeScore)")
         } else if (team == 2) {
             //Add point to away team (booo!)
-            approxAwayScore = homeStepper.value
+            approxAwayScore = awayStepper.value
             
             //Make the score pretty, yayyy integers!
             var awayScore = Int(approxAwayScore)
